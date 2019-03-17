@@ -1,5 +1,5 @@
 const base_url = "https://api.football-data.org/";
-var apiToken = '4a0cb9df07fc46e183314afc2a95c8d9'
+var apiToken = '4a0cb9df07fc46e183314afc2a95c8d9';
 
 function status(response) {
 	if (response.status !== 200) {
@@ -22,7 +22,7 @@ function error(error) {
 }
 
 var myHeaders = new Headers({
-  'X-Auth-Token': apiToken;
+  'X-Auth-Token': apiToken
 });
 
 function getStandings(league_id = 2001) {
