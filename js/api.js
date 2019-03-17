@@ -37,6 +37,7 @@ function getStandings(league_id = 2001) {
 
 				result.forEach(function(standing) {
 					var logo = standing.team.crestUrl;
+					logo = logo.replace(/^http:\/\//i, 'https://');
 					standingHTML += `
 					  <tr>
 					  	<td>${standing.position}</td>
@@ -68,6 +69,7 @@ function getStandings(league_id = 2001) {
 
 			result.forEach(function(standing) {
 				var logo = standing.team.crestUrl;
+				logo = logo.replace(/^http:\/\//i, 'https://');
 				standingHTML += `
 				  <tr>
 				  	<td>${standing.position}</td>
@@ -103,6 +105,9 @@ function getMatches() {
 
 				var standingHTML = "";
 				result.forEach(function(standing) {
+					let logo = standing.team.crestUrl;
+					logo = logo.replace(/^http:\/\//i, 'https://');
+
 					standingHTML += `
 					  <div class="card card-fb-rounded">
 					    <div class="card-content black-text">
@@ -111,7 +116,7 @@ function getMatches() {
 								<div class="position">${standing.position}</div>
 							  </div>
 							  <div class="col s2 m2 text-center">
-							  	<img class="team-fb-logo" src="${standing.team.crestUrl}">
+							  	<img class="team-fb-logo" src="${logo}">
 							  </div>
 							  <div class="col s8 m8">
 							  	${standing.team.name}
@@ -140,6 +145,9 @@ function getMatches() {
 
 			var standingHTML = "";
 			result.forEach(function(standing) {
+				let logo = standing.team.crestUrl;
+				logo = logo.replace(/^http:\/\//i, 'https://');
+				
 				standingHTML += `
 				  <div class="card card-fb-rounded">
 				    <div class="card-content black-text">
@@ -148,7 +156,7 @@ function getMatches() {
 							<div class="position">${standing.position}</div>
 						  </div>
 						  <div class="col s2 m2 text-center">
-						  	<img class="team-fb-logo" src="${standing.team.crestUrl}">
+						  	<img class="team-fb-logo" src="${logo}">
 						  </div>
 						  <div class="col s8 m8">
 						  	${standing.team.name}
@@ -235,8 +243,10 @@ function getDetailTeam(team_id) {
 		caches.match(`${base_url}v2/teams/${team_id}`).then(function(response) {
 		  if (response) {
 		    response.json().then(function(data) {
-		     
-			    $('#team_logo').attr('src', data.crestUrl);
+		     	
+		     	let logo = data.crestUrl;
+		     	logo = logo.replace(/^http:\/\//i, 'https://');
+			    $('#team_logo').attr('src', logo);
 		    	$('#team_name').html(data.name);
 		    	$('.team_email').html(data.email);
 		    	$('#team_short_name').html(data.shortName);
@@ -280,7 +290,10 @@ function getDetailTeam(team_id) {
     .then(json)
     .then(function(data) {
     	showResult(data)
-    	$('#team_logo').attr('src', data.crestUrl);
+		let logo = data.crestUrl;
+		logo = logo.replace(/^http:\/\//i, 'https://');
+
+    	$('#team_logo').attr('src', logo);
     	$('#team_name').html(data.name);
     	$('.team_email').html(data.email);
     	$('#team_short_name').html(data.shortName);
@@ -327,6 +340,7 @@ function getSavedTeams() {
   	listTeam = '';
 	data.forEach(function(team) {
 		let logo = team.crestUrl;
+		logo = logo.replace(/^http:\/\//i, 'https://');
 		listTeam += `
 		<a href="./team_matches.html?id=${team.id}">
 		  <div class="col s12 m8 offset-m2 l6 offset-l3">
