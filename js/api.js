@@ -179,7 +179,7 @@ function getMatches() {
 function getTeamMatch() {
   let params = new URLSearchParams(window.location.search);
   let team_id = params.get("id");
-  let isSaved = params.get("saved");
+  
   showLoading();
 
   fetch(`${base_url}v2/teams/${team_id}/matches?status=SCHEDULED`, { headers: myHeaders })
@@ -343,7 +343,7 @@ function getSavedTeams() {
 		let logo = team.crestUrl;
 		logo = logo.replace(/^http:\/\//i, 'https://');
 		listTeam += `
-		<a href="./team_matches.html?id=${team.id}">
+		<a href="./team_matches.html?id=${team.id}&saved=true">
 		  <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card-panel grey lighten-5 mbr-5 card-fb-rounded">
               <div class="row valign-wrapper no-margin-bottom player">

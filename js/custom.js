@@ -21,3 +21,13 @@ function addToFavourite(data) {
 		saveForLater(data);
 	})
 }
+
+function removeFromFavourite(id){
+	$('.favourite-off').hide();
+	$('.favourite-on').removeClass("hide").show();
+	$('.favourite-on').on('click', function() {
+		$(this).addClass('hide');
+		$(this).closest('.favourite-icon').find('.favourite-off').removeClass('hide').show();
+		deleteTeam(id);
+	})
+}

@@ -35,3 +35,15 @@ function getAll() {
       });
   });
 }
+
+function deleteTeam(id) {
+  dbPromised
+    .then(function(db) {
+      var tx = db.transaction('teams', 'readwrite');
+      var store = tx.objectStore('teams');
+      store.delete(parseInt(id));
+      return tx.complete;
+    }).then(function() {
+      console.log('Item deleted');
+    });
+}

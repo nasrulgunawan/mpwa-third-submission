@@ -79,7 +79,7 @@
           <!-- <br> -->
           <div class="favourite-icon">
             <i onclick="M.toast({html: 'Added to Favourite'})" class="material-icons pink-text text-darken-1 tooltipped favourite-off" data-position="bottom" data-tooltip="Add to favourite">star_border</i>
-            <i class="material-icons pink-text text-darken-1 tooltipped hide favourite-on" data-position="bottom" data-tooltip="Remove to favourite">star</i>
+            <i onclick="M.toast({html: 'Remove from Favourite'})" class="material-icons pink-text text-darken-1 tooltipped hide favourite-on" data-position="bottom" data-tooltip="Remove to favourite">star</i>
           </div>
           <img id="team_logo" class="team-logo" src="/images/default_team_image.png">
           <h6 id="team_name" class="heading-fb pink-text text-darken-1">team_name</h6>
@@ -199,6 +199,15 @@
     $('.tabs').tabs();
     $('.tooltipped').tooltip();
     getTeamMatch();
+
+    let params = new URLSearchParams(window.location.search);
+    let team_id = params.get("id");
+    let isSaved = params.get("saved");
+
+    if(isSaved) {
+      removeFromFavourite(team_id);
+    }
+
   })
 
 </script>
